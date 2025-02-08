@@ -33,11 +33,8 @@ export default function HomePage() {
             className={styles.input}
         />
         <br/>
-        <button 
-            onClick={checkPassword} 
-            className={styles.submit}
-        >
-            { "Submit"}
+        <button onClick={checkPassword} className={styles.submit} >
+          { "Submit"}
         </button>
         </div>
     </div>
