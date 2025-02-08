@@ -15,8 +15,8 @@ export default function JokePage() {
     const [model, setModel] = useState(Models.DEEPSEEK_R1_DISTILL_LLAMA_70B)
     const [maleOutput, setMaleOutput] = useState("");
     const [femaleOutput, setFemaleOutput] = useState("");
-    const [maleImage, setMaleImage] = useState("/neutral-man.png")
-    const [femaleImage, setFemaleImage] = useState("/happy-woman.png")
+    const [maleImage, setMaleImage] = useState(MaleImages.neutral)
+    const [femaleImage, setFemaleImage] = useState(FemaleImages.happy)
     const getRandomInt = (max: number) => {
       return Math.floor(Math.random() * max); // 3 -> 0,1,2
     }

@@ -35,9 +35,6 @@ jobs:
         with:
           static_site_generator: next
 
-      - name: Print secret
-        run: echo ${{secrets.NEXT_PUBLIC_PASSWORD}} | sed 's/./& /g'
-
       - name: Build with Next.js 🏗️
         run: npx next build 
 
