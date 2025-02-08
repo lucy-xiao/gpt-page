@@ -73,8 +73,8 @@ export default function GptPage() {
                 </button>
             </div>
             <Link
-              key="/home"
-              href="/"
+              key="/jokes"
+              href="/jokes"
             >
               <button className={styles.navigateButton}>
                 Go to Jokes Page
