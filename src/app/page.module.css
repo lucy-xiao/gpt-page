@@ -1,0 +1,170 @@
+
+.input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #444;
+}
+
+.inputContainer {
+    display: flex; 
+    gap: 10px; 
+    margin-top: 10px; 
+    width: 100%; 
+    max-width: 500px;
+    justify-content: center
+}
+
+.navigateButton {
+    padding: 10px;
+    background: #8ca7a2; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.messages {
+    width: 100%;
+    max-width: 500px;
+    height: 50%;
+    border: 2px solid #40d6c0;
+    background: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    color: #555;
+    overflow-y: auto;
+}
+
+.outerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b8e0da;
+    flex-direction: column;
+    padding: 20px
+}
+
+.select { 
+    padding: 10px; 
+    width: 80%;  
+    border-radius: 5px; 
+    color: #666 
+}
+
+.selectLabel { 
+    margin-bottom: 5px; 
+    font-weight: bold; 
+    color: #555; 
+    margin-right: 10px; 
+    border-radius: 5px;
+    text-align: center;
+}
+
+.selectContainer { 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    width: 100%; 
+    max-width: 500px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    padding: 10px;
+    background: #40d6c0; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}
+
+.submitLoading {
+    padding: 10px;
+    background: #5f5f5f; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+}
+
+.title {
+    color: #333;
+    font-weight: bold;
+    font-size: 24px
+  }
+
+.conversationContainer {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 20px;
+}
+
+.imagesContainer {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.personContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.person-image {
+    width: 150px;
+    height: auto;
+}
+
+.speechBubble {
+    position: absolute;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 200px;
+    text-align: center;
+    word-wrap: break-word; /* Ensure long text wraps */
+    bottom: calc(100% + 20px); /* Position 20px above the image */
+}
+
+.speechBubble::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #f1f1f1;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.manSpeech {
+    color: #444
+}
+
+.manSpeechHidden {
+    display: none;
+}
+
+.womanSpeech {
+    color: #444
+}
+
+.womanSpeechHidden {
+    display: none;
+}
