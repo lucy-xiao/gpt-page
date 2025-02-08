@@ -12,19 +12,17 @@ export enum Models {
     QWEN_2_5_V1_72B_INSTRUCT = "qwen/qwen2.5-vl-72b-instruct:free"
 }
 
-const basePath = "gpt-page"
-
 export enum MaleImages {
-    angry = basePath + "/angry-man.png",
-    happy = basePath + "/happy-man.png",
-    neutral = basePath + "/neutral-man.png",
-    sad = basePath + "/sad-man.png"
+    angry = "angry-man.png",
+    happy = "happy-man.png",
+    neutral = "neutral-man.png",
+    sad = "sad-man.png"
 }
 
 export enum FemaleImages {
-    angry = basePath + "/angry-woman.png",
-    happy = basePath + "/happy-woman.png",
-    sad = basePath + "/sad-woman.png"
+    angry = "angry-woman.png",
+    happy = "happy-woman.png",
+    sad = "sad-woman.png"
 }
 
 export const MaleImagesList = [MaleImages.neutral, MaleImages.angry, MaleImages.happy, MaleImages.sad]
