@@ -32,6 +32,9 @@ jobs:
 
       - name: Build with Next.js 🏗️
         run: npx next build
+        env: 
+          NEXT_PUBLIC_PASSWORD: ${{ secrets.NEXT_PUBLIC_PASSWORD}}
+          NEXT_PUBLIC_OPEN_ROUTER_KEY: ${{ secrets.NEXT_PUBLIC_OPEN_ROUTER_KEY}}
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
@@ -45,9 +48,7 @@ jobs:
 
     runs-on: ubuntu-latest
     needs: build
-    env: 
-      NEXT_PUBLIC_PASSWORD: ${{ secrets.NEXT_PUBLIC_PASSWORD}}
-      NEXT_PUBLIC_OPEN_ROUTER_KEY: ${{ secrets.NEXT_PUBLIC_OPEN_ROUTER_KEY}}
+
 
     steps:
       - name: Publish to GitHub Pages 🚀
