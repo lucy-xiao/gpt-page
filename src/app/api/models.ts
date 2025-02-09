@@ -27,3 +27,5 @@ export enum FemaleImages {
 
 export const MaleImagesList = [MaleImages.neutral, MaleImages.angry, MaleImages.happy, MaleImages.sad]
 export const FemaleImagesList = [ FemaleImages.happy, FemaleImages.angry, FemaleImages.sad]
+export const ZacImagesList = ['Zac5.jpg','Zac2.jpg','Zac3.jpg','Zac4.jpg','Zac1.jpg']
+export const LucyImagesList = ['Lucy1.jpg','Lucy2.jpg','Lucy3.jpg','Lucy4.jpg','Lucy5.jpg']

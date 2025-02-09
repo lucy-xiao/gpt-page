@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
 import { generateJoke } from "../api/gpt";
-import { FemaleImages, FemaleImagesList, MaleImages, MaleImagesList, Models } from "../api/models";
+import { LucyImagesList, Models, ZacImagesList } from "../api/models";
 import styles from '@/app/page.module.css'
 import Image from "next/image";
 import '@/app/page.module.css'
@@ -13,43 +13,43 @@ export default function JokePage() {
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false)
     const [model, setModel] = useState(Models.DEEPSEEK_R1_DISTILL_LLAMA_70B)
-    const [maleOutput, setMaleOutput] = useState("");
-    const [femaleOutput, setFemaleOutput] = useState("");
-    const [maleImage, setMaleImage] = useState(MaleImages.neutral)
-    const [femaleImage, setFemaleImage] = useState(FemaleImages.happy)
+    const [leftOutput, setLeftOutput] = useState("");
+    const [rightOutput, setRightOutput] = useState("");
+    const [leftImage, setLeftImage] = useState(ZacImagesList[0])
+    const [rightImage, setRightImage] = useState(LucyImagesList[0])
     const getRandomInt = (max: number) => {
       return Math.floor(Math.random() * max); // 3 -> 0,1,2
     }
 
     const getJoke = async () => {
       if (!input.trim()) return;
-      setMaleImage(MaleImages.neutral)
-      setFemaleImage(FemaleImages.happy)
-      setMaleOutput("")
-      setFemaleOutput("")
+      setLeftImage(ZacImagesList[0])
+      setRightImage(LucyImagesList[0])
+      setLeftOutput("")
+      setRightOutput("")
       try {
           setLoading(true)
           const response = await generateJoke(input, model);
           setLoading(false)
           const femaleInitiatesQuestion = Math.round(Math.random())
           if (femaleInitiatesQuestion) {
-            setMaleOutput(response.question)
-            setFemaleOutput(response.answer)
+            setLeftOutput(response.question)
+            setRightOutput(response.answer)
           } else {
-            setFemaleOutput(response.question)
-            setMaleOutput(response.answer)
+            setRightOutput(response.question)
+            setLeftOutput(response.answer)
           }
-          const randomMaleImageIndex = getRandomInt(MaleImagesList.length)
-          setMaleImage(MaleImagesList[randomMaleImageIndex])
-          const randomFemaleImageIndex = getRandomInt(FemaleImagesList.length)
-          setFemaleImage(FemaleImagesList[randomFemaleImageIndex])
+          const randomLeftImageIndex = getRandomInt(ZacImagesList.length)
+          setLeftImage(ZacImagesList[randomLeftImageIndex])
+          const randomRightImageIndex = getRandomInt(LucyImagesList.length)
+          setRightImage(LucyImagesList[randomRightImageIndex])
       } catch (error) {
         console.log("Error calling gpt", error)
         setLoading(false)
       }
     }
-      const maleSpeechBubbleCss = maleOutput === "" ? styles.manSpeechHidden : `${styles.speechBubble} ${styles.manSpeech}`
-      const femaleSpeechBubbleCss = femaleOutput === "" ? styles.womanSpeechHidden : `${styles.speechBubble} ${styles.womanSpeech}`
+      const maleSpeechBubbleCss = leftOutput === "" ? styles.manSpeechHidden : `${styles.speechBubble} ${styles.manSpeech}`
+      const femaleSpeechBubbleCss = rightOutput === "" ? styles.womanSpeechHidden : `${styles.speechBubble} ${styles.womanSpeech}`
 
       return !allowed ? <div className={styles.conversationContainer}>Not Allowed</div> : (
         <div>
@@ -57,15 +57,15 @@ export default function JokePage() {
           <div className={styles.conversationContainer}>
               <div className={styles.personContainer}>
                 <div className={maleSpeechBubbleCss}>
-                  <p>{maleOutput}</p>
+                  <p>{leftOutput}</p>
                 </div>
-                <Image src={maleImage} alt="" width={100} height={100}/>
+                <Image src={leftImage} alt="" width={100} height={100}/>
               </div>
               <div className={styles.personContainer}>
                 <div className={femaleSpeechBubbleCss}>
-                  <p>{femaleOutput}</p>
+                  <p>{rightOutput}</p>
                 </div>
-                <Image src={femaleImage} alt="" width={100} height={100}/>
+                <Image src={rightImage} alt="" width={100} height={100}/>
               </div>
             </div>
             <h1 className={styles.title}>Random Joke Generator 😂</h1>
