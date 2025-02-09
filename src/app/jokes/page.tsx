@@ -17,12 +17,14 @@ export default function JokePage() {
     const [rightOutput, setRightOutput] = useState("");
     const [leftImage, setLeftImage] = useState(ZacImagesList[0])
     const [rightImage, setRightImage] = useState(LucyImagesList[0])
+    const [showError, setShowError] = useState(false)
     const getRandomInt = (max: number) => {
       return Math.floor(Math.random() * max); // 3 -> 0,1,2
     }
 
     const getJoke = async () => {
       if (!input.trim()) return;
+      setShowError(false)
       setLeftImage(ZacImagesList[0])
       setRightImage(LucyImagesList[0])
       setLeftOutput("")
@@ -46,6 +48,7 @@ export default function JokePage() {
       } catch (error) {
         console.log("Error calling gpt", error)
         setLoading(false)
+        setShowError(true)
       }
     }
       const maleSpeechBubbleCss = leftOutput === "" ? styles.manSpeechHidden : `${styles.speechBubble} ${styles.manSpeech}`
@@ -82,6 +85,7 @@ export default function JokePage() {
                   ))}
               </select>
             </div>
+            {showError && <p style={{color: "#444"}}>Something went wrong, try a different topic.</p>}
             <div className={styles.inputContainer}>
                 <input 
                     type="text" 

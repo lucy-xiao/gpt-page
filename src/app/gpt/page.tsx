@@ -27,6 +27,7 @@ export default function GptPage() {
           setMessages([...newMessages, { sender: "Bot", text: reply }]);
       } catch (error) {
         console.log("Error calling gpt", error)
+        setLoading(false)
         setMessages([...newMessages, { sender: "Bot", text: "Oops! Something went wrong. Try again later." }]);
       }
     }
