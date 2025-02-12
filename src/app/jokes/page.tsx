@@ -54,7 +54,7 @@ export default function JokePage() {
       const femaleSpeechBubbleCss = rightOutput === "" ? styles.womanSpeechHidden : `${styles.speechBubble} ${styles.womanSpeech}`
 
       return !allowed ? <div className={styles.conversationContainer}>Not Allowed</div> : (
-        <div>
+        <div className="mt-20 flex flex-col items-center justify-center min-h-screen px-4 bg-[#b8e0da] overflow-visible">
           <div className={styles.outerContainer }>
             <div className={styles.conversationContainer}>
               <motion.div 

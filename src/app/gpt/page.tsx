@@ -34,7 +34,7 @@ export default function GptPage() {
 
       return !allowed ? <div className={styles.conversationContainer}>Not Allowed</div> : (
         <div>
-          <div className={styles.outerContainer}>
+          <div className="mt-20 flex flex-col items-center justify-center min-h-screen px-4 bg-[#b8e0da] overflow-visible">
             <h1 className={styles.title}>GPT Tester 🤖</h1>
             {/* Dropdown to choose model type */}
             <div className={styles.selectContainer}>
