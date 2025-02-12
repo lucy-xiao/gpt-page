@@ -22,7 +22,7 @@ export default function HomePage() {
 
     return (
       <div>
-        <div className={styles.outerContainer }>
+        <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-[#b8e0da] overflow-visible">
           <h1 style={{color: "#222", fontWeight: "bold", fontSize: "32px"}}>Login</h1>
           {showError ? <p style={{color: "#444"}}>Incorrect password</p> : null}
         <input 

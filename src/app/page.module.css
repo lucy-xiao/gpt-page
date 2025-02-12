@@ -1,8 +1,9 @@
 .input {
-    width: 80%;
+    width: 20%;
     padding: 10px;
     border-radius: 5px;
     color: #444;
+    margin-top: 10;
 }
 
 .inputContainer {
@@ -69,7 +70,7 @@
 }
 
 .selectContainer { 
-    margin-top: 10px; 
+    margin-top: 5px; 
     margin-bottom: 10px; 
     width: 100%; 
     max-width: 500px; 
