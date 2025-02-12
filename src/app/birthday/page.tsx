@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function BirthdayPage() {
   const [fireworks, setFireworks] = useState<Array<{ id: number; x: number; y: number }>>([]);
   const router = useRouter();
+  const [personOut, setPersonOut] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
       setFireworks((prev) => [
@@ -19,9 +20,15 @@ export default function BirthdayPage() {
     }, 500);
     return () => clearInterval(interval);
   }, []);
+  // Variants for the person image animation
+  const personVariants = {
+    initial: { x: "100%", y: "100%", opacity: 0 },
+    visible: { x: "0%", y: "0%", opacity: 1 },
+    exit: { x: "100%", y: "100%", opacity: 0 },
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-teal-500 to-purple-500 relative overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-r from-teal-500 to-purple-500 relative overflow-hidden">
       {fireworks.map((fw) => (
         <motion.div
           key={fw.id}
@@ -33,7 +40,7 @@ export default function BirthdayPage() {
         />
       ))}
       <motion.h1
-        className="text-6xl font-bold text-white drop-shadow-lg max-w-[70%]"
+        className="mt-10 text-4xl md:text-6xl font-bold text-white drop-shadow-lg max-w-[70%]"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1.2, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -41,7 +48,7 @@ export default function BirthdayPage() {
       Happy 30th Birthday Zac!! 🎉
       </motion.h1>
       <motion.div
-        className="mt-10 text-3xl text-white max-w-[60%]"
+        className="mt-5 text-xl md:text-3xl text-white max-w-[60%]"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -49,10 +56,12 @@ export default function BirthdayPage() {
         {`I love you, miss you, and I wish I were there to celebrate with you, but I can't wait to see you soon! 🎂🎈`}
       </motion.div>
       <motion.div
-        className="w-40 h-40 absolute bottom-0 right-0"
-        initial={{ x: "100%", y: "100%", opacity: 0 }}
-        animate={{ x: "0%", y: "0%", opacity: 1 }}
-        transition={{ delay: 5, duration: 2, ease: "easeOut" }}
+        className="w-28 h-28 md:w-40 md:h-40 absolute bottom-0 right-0 mb-4 mr-4 z-1000"
+        onClick={() => setPersonOut(true)}
+        variants={personVariants}
+        initial="initial"
+        animate={personOut ? "exit" : "visible"}
+        transition={{ delay: personOut? 0 : 5, duration: 2, ease: personOut ? "easeIn" : "easeOut" }}
       >
         <div className={styles.conversationContainer} >
           <div className={styles.personContainer} >
@@ -68,7 +77,7 @@ export default function BirthdayPage() {
         </div>
       </motion.div>
       <motion.div
-        className="mt-5 text-xl text-white max-w-[60%]"
+        className="mt-5 text-xl md:text-3xl text-white max-w-[60%]"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -76,67 +85,71 @@ export default function BirthdayPage() {
        {` I'm proud of all the hard work you've been doing, from getting fit, to finishing classwork early, getting called into work in your free time, it hasn't been easy.`}
       </motion.div>
       <motion.div
-        className="mt-5 text-xl text-white max-w-[50%]"
+        className="mt-5 text-xl md:text-3xl text-white max-w-[50%]"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
       {`I made you a fun little GPT toy to make it easier to play around with different GPT models, I hope it brings you some amusement :)`}
       </motion.div>
-      <div className="flex mt-10 space-x-10">
-        <div className="flex flex-col items-center">
-          <motion.img
-            src="https://cdn-icons-png.flaticon.com/512/6522/6522628.png"
-            alt="Starberry Pocky"
-            className="w-40 h-40 mt-5"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.1, 1], rotate: [5, 5, -5, 5] }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-          />
+      <motion.div className="flex flex-col md:flex-row items-center mt-5 space-y-5 md:space-x-5 md:space-y-0">
+        <div className="flex mt-10 space-x-10">
+          <div className="flex flex-col items-center">
+            <motion.img
+              src="https://cdn-icons-png.flaticon.com/512/6522/6522628.png"
+              alt="Starberry Pocky"
+              className="w-32 h-32 md:w-40 md:h-40 mt-5"
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.1, 1], rotate: [5, 5, -5, 5] }}
+              transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <motion.img
+              src="https://cdn-icons-png.flaticon.com/512/3173/3173522.png"
+              alt="Starberry Pocky"
+              className="w-32 h-32 md:w-40 md:h-40 mt-5"
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <motion.img
+              src="https://cdn-icons-png.flaticon.com/512/786/786954.png"
+              alt="Starberry Pocky"
+              className="w-32 h-32 md:w-40 md:h-40 mt-5"
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.1, 1], rotate: [3, 5, -10, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+            />
+          </div>
         </div>
-        <div className="flex flex-col items-center">
-          <motion.img
-            src="https://cdn-icons-png.flaticon.com/512/3173/3173522.png"
-            alt="Starberry Pocky"
-            className="w-40 h-40 mt-5"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-          />
-         </div>
-        <div className="flex flex-col items-center">
-          <motion.img
-            src="https://cdn-icons-png.flaticon.com/512/786/786954.png"
-            alt="Starberry Pocky"
-            className="w-40 h-40 mt-5"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.1, 1], rotate: [3, 5, -10, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-          />
-         </div>
-      </div>
-      <div className="flex mt-10 space-x-10">
-        <div className="flex flex-col items-center">
-          <motion.img
-            src="https://cdn-icons-png.flaticon.com/512/1083/1083805.png"
-            alt="Present 1"
-            className="w-20 h-20 cursor-pointer"
-            whileHover={{ scale: 1.2 }}
-            onClick={() => router.push("/jokes")}
-          />
-          <motion.span className="text-white mt-2">Present 1</motion.span>
+      </motion.div>
+      <motion.div className="flex flex-col md:flex-row items-center mt-10 space-y-10 md:space-y-0 md:space-x-10">
+        <div className="flex mt-10 space-x-10">
+          <div className="flex flex-col items-center">
+            <motion.img
+              src="https://cdn-icons-png.flaticon.com/512/1083/1083805.png"
+              alt="Present 1"
+              className="w-16 h-16 md:w-20 md:h-20 cursor-pointer"
+              whileHover={{ scale: 1.2 }}
+              onClick={() => router.push("/jokes")}
+            />
+            <motion.span className="text-white mt-2">Present 1</motion.span>
+          </div>
+          <div className="flex flex-col items-center">
+            <motion.img
+              src="https://cdn-icons-png.flaticon.com/512/1179/1179870.png"
+              alt="Present 2"
+              className="w-16 h-16 md:w-20 md:h-20 cursor-pointer"
+              whileHover={{ scale: 1.2 }}
+              onClick={() => router.push("/gpt")}
+            />
+            <motion.span className="text-white mt-2">Present 2</motion.span>
+          </div>
         </div>
-        <div className="flex flex-col items-center">
-          <motion.img
-            src="https://cdn-icons-png.flaticon.com/512/1179/1179870.png"
-            alt="Present 2"
-            className="w-20 h-20 cursor-pointer"
-            whileHover={{ scale: 1.2 }}
-            onClick={() => router.push("/gpt")}
-          />
-          <motion.span className="text-white mt-2">Present 2</motion.span>
-        </div>
-      </div>
+      </motion.div>
     </div>
     
   );

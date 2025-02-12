@@ -138,6 +138,7 @@
     text-align: center;
     word-wrap: break-word; /* Ensure long text wraps */
     bottom: calc(100% + 20px); /* Position 20px above the image */
+    z-index: 1000;
 }
 
 .speechBubble::after {
