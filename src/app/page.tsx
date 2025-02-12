@@ -14,7 +14,7 @@ export default function HomePage() {
     const checkPassword = () => {
       if (input === NEXT_PUBLIC_PASSWORD) {
         updateAllowed(true)
-        router.push('/jokes')
+        router.push('/birthday')
       } else {
         setShowError(true)
       }

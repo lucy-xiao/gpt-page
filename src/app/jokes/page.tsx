@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import { generateJoke } from "../api/gpt";
 import { LucyImagesList, Models, ZacImagesList } from "../api/models";
 import styles from '@/app/page.module.css'
-import Image from "next/image";
 import '@/app/page.module.css'
 import Link from "next/link";
 import { useAppStore } from "../store/store";
+import { motion } from "framer-motion";
 
 export default function JokePage() {
     const allowed = useAppStore((state) => state.allowed)
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false)
-    const [model, setModel] = useState(Models.DEEPSEEK_R1_DISTILL_LLAMA_70B)
+    const [model, setModel] = useState(Models.DEEPSEEK_V3)
     const [leftOutput, setLeftOutput] = useState("");
     const [rightOutput, setRightOutput] = useState("");
     const [leftImage, setLeftImage] = useState(ZacImagesList[0])
-    const [rightImage, setRightImage] = useState(LucyImagesList[0])
+    const [rightImage, setRightImage] = useState(LucyImagesList[5])
     const [showError, setShowError] = useState(false)
     const getRandomInt = (max: number) => {
       return Math.floor(Math.random() * max); // 3 -> 0,1,2
@@ -25,8 +25,6 @@ export default function JokePage() {
     const getJoke = async () => {
       if (!input.trim()) return;
       setShowError(false)
-      setLeftImage(ZacImagesList[0])
-      setRightImage(LucyImagesList[0])
       setLeftOutput("")
       setRightOutput("")
       try {
@@ -51,25 +49,36 @@ export default function JokePage() {
         setShowError(true)
       }
     }
+
       const maleSpeechBubbleCss = leftOutput === "" ? styles.manSpeechHidden : `${styles.speechBubble} ${styles.manSpeech}`
       const femaleSpeechBubbleCss = rightOutput === "" ? styles.womanSpeechHidden : `${styles.speechBubble} ${styles.womanSpeech}`
 
       return !allowed ? <div className={styles.conversationContainer}>Not Allowed</div> : (
         <div>
           <div className={styles.outerContainer }>
-          <div className={styles.conversationContainer}>
-              <div className={styles.personContainer}>
+            <div className={styles.conversationContainer}>
+              <motion.div 
+                className={styles.personContainer} 
+                initial={{ scale: 0 }}
+                animate={leftOutput === "" ? {scale: [1]} : { scale: [1, 1.1, 1], rotate: [0, 3, -3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+              >
                 <div className={maleSpeechBubbleCss}>
                   <p>{leftOutput}</p>
                 </div>
-                <Image src={leftImage} alt="" width={100} height={100}/>
-              </div>
-              <div className={styles.personContainer}>
+                <motion.img src={leftImage} alt="" width={200} height={200}/>
+              </motion.div>
+              <motion.div 
+                className={styles.personContainer} 
+                initial={{ scale: 0 }}
+                animate={rightOutput === "" ? {scale: [1]} : { scale: [1, 1.1, 1], rotate: [0, -3, 3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+              >
                 <div className={femaleSpeechBubbleCss}>
                   <p>{rightOutput}</p>
                 </div>
-                <Image src={rightImage} alt="" width={100} height={100}/>
-              </div>
+                <motion.img src={rightImage} alt="" width={200} height={200}/>
+              </motion.div>
             </div>
             <h1 className={styles.title}>Random Joke Generator 😂</h1>
             {/* Dropdown to choose model type */}
@@ -85,7 +94,7 @@ export default function JokePage() {
                   ))}
               </select>
             </div>
-            {showError && <p style={{color: "#444"}}>Something went wrong, try a different topic.</p>}
+            {showError && <p style={{color: "#444"}}>Something went wrong, try a different model or topic.</p>}
             <div className={styles.inputContainer}>
                 <input 
                     type="text" 

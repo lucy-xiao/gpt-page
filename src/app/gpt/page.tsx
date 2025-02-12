@@ -11,7 +11,7 @@ export default function GptPage() {
   const [messages, setMessages] = useState<{ sender: string, text: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false)
-  const [model, setModel] = useState(Models.DEEPSEEK_R1_DISTILL_LLAMA_70B)
+  const [model, setModel] = useState(Models.DEEPSEEK_V3)
   const sendMessage = async () => {
       if (!input.trim()) return;
 
@@ -23,12 +23,12 @@ export default function GptPage() {
           setLoading(true)
           const response = await gpt(input, model);
           setLoading(false)
-          const reply = response || "Oops! Something went wrong. Try again later.";
+          const reply = response || "Oops! Something went wrong. Try again or select a different model.";
           setMessages([...newMessages, { sender: "Bot", text: reply }]);
       } catch (error) {
         console.log("Error calling gpt", error)
         setLoading(false)
-        setMessages([...newMessages, { sender: "Bot", text: "Oops! Something went wrong. Try again later." }]);
+        setMessages([...newMessages, { sender: "Bot", text: "Oops! Something went wrong. Try again or select a different model." }]);
       }
     }
 
