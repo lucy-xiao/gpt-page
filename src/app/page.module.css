@@ -1,5 +1,5 @@
 .input {
-    width: 20%;
+    width: 50%;
     padding: 10px;
     border-radius: 5px;
     color: #444;
@@ -70,7 +70,7 @@
 }
 
 .selectContainer { 
-    margin-top: 5px; 
+    margin-top: 10px; 
     margin-bottom: 10px; 
     width: 100%; 
     max-width: 500px; 
