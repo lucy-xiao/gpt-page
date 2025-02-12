@@ -16,7 +16,7 @@ export default function JokePage() {
     const [leftOutput, setLeftOutput] = useState("");
     const [rightOutput, setRightOutput] = useState("");
     const [leftImage, setLeftImage] = useState(ZacImagesList[0])
-    const [rightImage, setRightImage] = useState(LucyImagesList[0])
+    const [rightImage, setRightImage] = useState(LucyImagesList[5])
     const [showError, setShowError] = useState(false)
     const getRandomInt = (max: number) => {
       return Math.floor(Math.random() * max); // 3 -> 0,1,2
