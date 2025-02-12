@@ -46,7 +46,7 @@ export default function BirthdayPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        I love you, miss you, and I wish I were there to celebrate with you, but I can't wait to see you soon! 🎂🎈
+        {`I love you, miss you, and I wish I were there to celebrate with you, but I can't wait to see you soon! 🎂🎈`}
       </motion.div>
       <motion.div
         className="w-40 h-40 absolute bottom-0 right-0"
@@ -57,7 +57,7 @@ export default function BirthdayPage() {
         <div className={styles.conversationContainer} >
           <div className={styles.personContainer} >
             <div className={`${styles.speechBubble} ${styles.manSpeech}`}>
-              <p>Congrats, you're old! But still a handsome silver fox ;)</p>
+              <p>{`Congrats, you're old! But still a handsome silver fox ;)`}</p>
             </div>
             <motion.img
               src="Lucy6.jpg"
@@ -73,7 +73,7 @@ export default function BirthdayPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        I'm proud of all the hard work you've been doing, from getting fit, to finishing classwork early, getting called into work in your free time, it hasn't been easy.
+       {` I'm proud of all the hard work you've been doing, from getting fit, to finishing classwork early, getting called into work in your free time, it hasn't been easy.`}
       </motion.div>
       <motion.div
         className="mt-5 text-xl text-white max-w-[50%]"
@@ -81,7 +81,7 @@ export default function BirthdayPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-      I made you a fun little GPT toy to make it easier to play around with different GPT models, I hope it brings you some amusement :)
+      {`I made you a fun little GPT toy to make it easier to play around with different GPT models, I hope it brings you some amusement :)`}
       </motion.div>
       <div className="flex mt-10 space-x-10">
         <div className="flex flex-col items-center">
